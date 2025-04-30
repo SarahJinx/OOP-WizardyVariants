@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class CombatStarter : MonoBehaviour
 {
-    void Start()
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log($"Bush with combat at: {transform.position}");
+        if (other.GetComponent<PlayerController>() && other.GetComponent<CombatController>() == null)
+        {
+            other.gameObject.AddComponent<CombatController>();
+            Debug.Log("¡Combate iniciado!");
+        }
     }
 }
